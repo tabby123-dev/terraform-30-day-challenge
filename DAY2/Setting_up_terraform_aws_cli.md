@@ -59,7 +59,12 @@ Default output format: json
 aws configure list-profiles
 aws sts get-caller-identity --profile terraform-user
 ```
+Additional inacase you face issues in windows.
+```bash
+export PATH=$PATH:"/c/Program Files/Amazon/AWSCLIV2/"
+export AWS_PROFILE="terraform-user"
 
+```
 ---
 
 ##  5. Install Terraform
