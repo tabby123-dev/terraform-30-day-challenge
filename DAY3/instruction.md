@@ -66,7 +66,9 @@ Deploy the web server in the public subnet using Terraform.
 ### 6. Test Connectivity
 - Access the web server via its public IP or DNS.  
 - Verify that ports 80 and 443 are reachable.  
-<img width="824" height="314" alt="image" src="https://github.com/user-attachments/assets/2d18d6ff-3076-4e76-87c0-054381d8d3e6" />
+```
+http://publicipof server
+```
 
 
 
