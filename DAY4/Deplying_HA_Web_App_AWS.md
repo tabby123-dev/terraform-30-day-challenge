@@ -105,3 +105,4 @@ I learned:
 **Fix:**  
 - Configured the listener to forward requests to the correct target group  
 - Verified protocol and port alignment
+#30DayTerraformChallenge #TerraformChallenge #Terraform #AWS #HighAvailability #IaC #AWSUserGroupKenya #EveOps
