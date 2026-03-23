@@ -62,28 +62,47 @@ A common and effective setup includes:
 ### S3 Bucket for State Storage
 
 ```hcl
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = "my-terraform-state-bucket"
-
-  versioning {
-    enabled = true
+terraform {
+  backend "s3" {
+    bucket         = "your bucket name"
+    key            = "global/s3/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-state-locks"
+    encrypt        = true
   }
+}
+resource "aws_s3_bucket" "terraform_state" {
+  bucket = "your bucket name"
 
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "aws_s3_bucket_versioning" "enabled" {
+  bucket = aws_s3_bucket.terraform_state.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "default" {
+  bucket = aws_s3_bucket.terraform_state.id
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
     }
   }
 }
+
 ```
 
 ### DynamoDB Table for Locking
 
 ```hcl
+
 resource "aws_dynamodb_table" "terraform_locks" {
-  name         = "terraform-locks"
+  name         = "terraform-state-locks"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
 
@@ -95,22 +114,23 @@ resource "aws_dynamodb_table" "terraform_locks" {
 ```
 
 ---
+Dynamo db table 
+<img width="962" height="658" alt="image" src="https://github.com/user-attachments/assets/ee3d93a9-e104-4651-9ff8-9d6b620c4083" />
 
-## 📸 Screenshots (Optional)
 
-You can include screenshots in your GitHub repo like this:
+Terraform init
+<img width="739" height="457" alt="image" src="https://github.com/user-attachments/assets/cd5c647c-cef5-425a-8cf4-da658fa74ef6" />
 
-```md
-![S3 Bucket Setup](./images/s3-bucket.png)
-![DynamoDB Table](./images/dynamodb-table.png)
-![Terraform Init Output](./images/terraform-init.png)
-```
 
-### Tips:
+<img width="975" height="228" alt="image" src="https://github.com/user-attachments/assets/100e3df1-100d-4c55-aa00-b0d4176bd89e" />
 
-* Create an `images/` folder in your repository
-* Store all screenshots there
-* Use relative paths as shown above
+S3 Bucket Setup
+<img width="1444" height="621" alt="image" src="https://github.com/user-attachments/assets/82b29bdf-e447-4588-9757-7701757e1b9c" />
+
+Remote statefile prompt
+
+<img width="804" height="384" alt="image" src="https://github.com/user-attachments/assets/fcdd50be-a6ef-4eb7-81f6-ec9ac7e5ddd8" />
+
 
 ---
 
