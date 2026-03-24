@@ -20,17 +20,10 @@ data "aws_subnets" "default" {
   }
 }
 data "aws_security_group" "my_sg" {
-  id = "sg-0a4c3ebecc7e40048"
+  id = "sg-0a4c3ebecc8"
 }
-/*
-data "aws_security_group" "my_sg" {
-  filter {
-    name   = "default"
-    values = ["sg-0a4c3ebecc7e40048"]
-  }
-  vpc_id = data.aws_vpc.default.id
-}
-*/
+
+
 resource "aws_launch_template" "web_app" {
   name_prefix            = "${var.cluster_name}-launchtemplate"
   image_id               = data.aws_ami.amazon_linux.id
