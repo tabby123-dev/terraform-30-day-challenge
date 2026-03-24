@@ -223,5 +223,5 @@ Run this command to safely destroy your infrastructure after  completing the lea
 ```bash
 terraform destroy
 ```
-
+#30DayTerraformChallenge #AWSUserGroupKenya #EveOps
 
