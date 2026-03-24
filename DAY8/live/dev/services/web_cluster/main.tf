@@ -1,7 +1,7 @@
 terraform {
 
   backend "s3" {
-    bucket         = "terraform-running"
+    bucket         = "terraform-running-bucket"
     key            = "live/dev/terraform.tfstate"
     region         = "us-east-1"
     encrypt        = true
