@@ -20,7 +20,7 @@ data "aws_subnets" "default" {
   }
 }
 data "aws_security_group" "my_sg" {
-  id = "sg-0a4c3ebecc8"
+  id = "sg-0a4c3ebecc7e40048"
 }
 
 
