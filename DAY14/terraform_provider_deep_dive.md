@@ -154,3 +154,5 @@ Terraform needs: - Credentials - Region - Execution context
 If no provider is specified: - Terraform infers from resource type
 (`aws_instance` → `aws`) - Uses default provider (non-aliased) - Errors
 if only aliased providers exist
+----
+#30DayTerraformChallenge #TerraformChallenge #Terraform #AWS #MultiRegion #IaC #AWSUserGroupKenya #EveOps
