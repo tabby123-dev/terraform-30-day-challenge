@@ -5,10 +5,9 @@ The “destroy, then create” approach is unreliable in real production environ
 ## Create-Before-Destroy Implementation
 
 ## Code Example
+Refer to the files in the repo.
 
-## Zero-Downtime Deployment Evidence
 
-*Paste here.*
 
 ## Blue/Green Configuration
 
@@ -20,5 +19,3 @@ The switch from blue to green is very fast, and no major delay is observed durin
 - It can cause drift while old resources are still running until the new ones are fully created.
 - Zero-downtime does not work well with Auto Scaling policies, because it can reset your ASG desired capacity to the `min_size`.
 - Rollbacks can be complex due to resource dependencies.
-
-## Demo: Switching from Green to Blue
