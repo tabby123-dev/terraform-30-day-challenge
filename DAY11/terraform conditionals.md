@@ -14,6 +14,7 @@ condition ? value_if_true : value_if_false
 If the condition is true, the first value is used. If false, the second value is used.
 
 **Brownfields** env have existing infrastructure that was cerated manually through scripts or with other tools.Bringinh this infrastructure under terraform management requires careful planning to avoid disrupting runnin services while gradually gaining the benefits of infrastructure as code.
+---
 **Greenfiled** enc you start from scratch with all resources cretaed with terraform.No preexisting resources.In this you have full control of the infrastructure.
 
 
