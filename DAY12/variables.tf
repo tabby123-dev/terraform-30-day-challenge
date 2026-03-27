@@ -1,18 +1,6 @@
-variable "environment" {
-    type = string
-    default = "dev"
-  
-}
-variable "use_existing_vpc" {
-    type = bool
-    default = true
-  
-}
-
-
-variable "launch_template_name" {
+variable "cluster_name" {
   description = "Name for the launch template"
-  #default = "web-server-template"
+  default = "zero-downtime-cluster"
   
 }
 variable "ami_id" {
@@ -21,7 +9,7 @@ variable "ami_id" {
 }
 variable "instance_type" {
     description = "type of instnace"
-    #default = "t2.micro"
+    default = "t2.micro"
 }
 variable "security_group_ids" {
   description = "List of security group IDs"
@@ -31,11 +19,7 @@ variable "security_group_ids" {
 }
 variable "instance_name" {
     type = string
-    #default = "Webserver"
-  
-}
-variable "region" {
-    default = "us-east-1"
+    default = "zero-dowtime"
   
 }
 variable "max_size" {
@@ -55,11 +39,7 @@ variable "health_check_type" {
     default = "ELB"
   
 }
-variable "lb_target_grp" {
-    type = string
-    #default = "web-tg"
-  
-}
+
 variable "port" {
     default = 80
   
@@ -69,14 +49,13 @@ variable "protocol" {
     default = "HTTP"
   
 }
-variable "enable_autoscaling" {
-    description = "if set to true enable auroscaling"
+variable "app_version" {
+    type = string
+    default = "v1"
   
 }
-variable "enable_detailed_monitoring" {
-    description = "enable cloud watch"
-    type = bool
-    default = false
+variable "active_environmet" {
+    description = "which env is active blue or green"
+    default = "green"
   
 }
-

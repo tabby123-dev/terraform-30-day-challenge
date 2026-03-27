@@ -6,19 +6,29 @@ locals {
   max_size = local.is_production ? 10 : 3
 
   enable_monitoring = local.is_production || var.enable_detailed_monitoring
+  vpc_id = var.use_existing_vpc ? data.aws_vpc.existing.id : aws_vpc.new_vpc
 }
 
-
+data "aws_vpc" "existing" {
+  count = var.use_existing_vpc ? 1 : 0
+  
+}
+/*
 
 data "aws_vpc" "default" {
     default = true
   
 }
+*/
 data "aws_subnets" "default_subnets" {
     filter {
       name = "vpc-id"
-      values = [data.aws_vpc.default.id]
+      values = [data.aws_vpc.existing.id]
     }
+  
+}
+resource "aws_vpc" "new_vpc" {
+  count = var.use_existing_vpc ? 0 : 1
   
 }
 
@@ -55,10 +65,7 @@ resource "aws_autoscaling_group" "web_asg" {
       key = "Name"
       value = "${var.instance_name}-asgweb"
       propagate_at_launch = true
-    }
-
-
-  
+    } 
 }
 resource "aws_lb" "web_lb" {
     name = "${var.instance_name}-alb"
